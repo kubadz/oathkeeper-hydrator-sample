@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: app
+          image: kubagoryl/sample-api:v1
+          ports:
+            - containerPort: 8080
+              name: http
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: api
+spec:
+  selector:
+    app: api
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
