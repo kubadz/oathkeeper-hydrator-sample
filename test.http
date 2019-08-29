@@ -1,0 +1,36 @@
+POST http://localhost:8080
+content-type: application/json
+
+{
+	"foo": "bar"
+}
+
+###
+
+POST http://localhost:8080
+content-type: application/json
+X-group: admin
+
+{
+	"foo": "bar"
+}
+
+###
+
+POST http://localhost:8080
+content-type: application/json
+X-group: user
+
+{
+	"foo": "bar"
+}
+
+###
+
+POST http://localhost:8080
+content-type: application/json
+X-group: anonymous
+
+{
+	"foo": "bar"
+}

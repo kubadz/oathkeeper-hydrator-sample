@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: kubagoryl/sample-api:v1
+          image: kubagoryl/sample-api:v2
           ports:
             - containerPort: 8080
               name: http
