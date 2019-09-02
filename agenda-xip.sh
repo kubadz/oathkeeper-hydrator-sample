@@ -1,4 +1,4 @@
-# deploy kyma from branch jakkab:ORY-versions-bump (https://github.com/kyma-project/kyma/pull/5290)
+# deploy kyma from master (previously branch jakkab:ORY-versions-bump (https://github.com/kyma-project/kyma/pull/5290))
 
 # cel zadania
   - dodanie obsługi tablicy mutatorów
@@ -14,13 +14,10 @@ kc edit cm -n kyma-system ory-oathkeeper-config
 # restart oathkeeper pod
 kc delete pod -n kyma-system -l "app.kubernetes.io/name"=oathkeeper
 
-# deploy lambda for showing headers and jwt payload (set lambda name to 'lambda')
+# deploy lambda for showing jwt payload (set lambda name to 'lambda')
 module.exports = { main: function (event, context) {
-    console.log("Request arrived! headers:")
+    console.log("Request arrived!")
     const headers = event.extensions.request.headers;
-    for (let k of Object.keys(headers)){
-        console.log(`> "${k}": ${headers[k]}`);
-    } 
     let token = headers['authorization'];
     token = token.replace('Bearer ', '');
     const tokenPayloadEncoded = token.split('.')[1];
